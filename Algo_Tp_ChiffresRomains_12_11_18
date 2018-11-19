@@ -1,0 +1,407 @@
+//***************************************************************************************************************
+                                            //Algorithme//
+//***************************************************************************************************************
+
+BUT :Ecrire un algorithme qui transforme un nombre entier décimal en chiffre romain et inversement
+ENTREE : Nombre décimale ou Chiffre Romain
+SORTIE : Convertion en Chiffre Romain ou Nombre décimale
+
+CONST
+
+VAR
+
+NCHOIX:ENTIER
+
+
+
+//**************************************************
+//Description: permet de convertir un entier en chiffre romains
+//
+//Entrée: Entier
+//
+//Sortie: CHiffre romains
+//
+//Note
+//*************************************************
+PROCEDURE Convertion_Romains_Calcul()
+
+var
+
+        Nombre:ENTIER
+        Resultat:CHAÎNE
+
+    debut
+
+        Nombre<--0
+
+        TANTQUE (Nombre>9999 OU Nombre<0) ALORS
+
+            ECRIRE "Saisir un nombre compris entre 0 et 9999: "
+            LIRE(Nombre)
+        FINTANTQUE
+
+        TANTQUE (Nombre>0) ALORS
+            
+        SI (Nombre>1000) ALORS
+                   
+            Resultat<--Resultat+'M'
+            Nombre<--Nombre-1000
+
+            SI (Nombre>900 ET Nombre<1000) ALORS
+                Resultat<--Resultat+"CM"
+                Nombre<--Nombre-900
+        
+                Si (Nombre>500 ET Nombre<1000)
+                    Resultat<--Resultat+'D'
+                    Nombre<--Nombre-500
+  
+                    SI (Nombre>400 ET Nombre<500) ALORS
+                        Resultat<--Resultat+"CD"
+                        Nombre<--Nombre-400
+                                    
+                        SI (Nombre>100 ET Nombre<500)
+                             Resultat<--Resultat+'C'
+                             Nombre<--Nombre-100
+        
+                            SI (Nombre>90 ET Nombre<100) ALORS
+                                    Resultat<--Resultat+"XC"
+                                    Nombre<--Nombre-90
+                                    
+                                    SI (Nombre>50 ET Nombre<100)
+                                        Resultat<--Resultat+'L'
+                                        Nombre<--Nombre-50
+                                        
+                                        SI (Nombre>40 ET Nombre<50) ALORS
+                                            Resultat<--Resultat+"XL"
+                                            Nombre<--Nombre-40
+       
+                                            SI (Nombre>10 ET Nombre<50)
+                                                Resultat<--Resultat+'X'
+                                                Nombre<--Nombre-10
+
+                                                SI (Nombre=9 ET Nombre<10) ALORS
+                                                        Resultat<--Resultat+"IX"
+                                                        Nombre<--Nombre-9
+        
+                                                        SI (Nombre>5 ET Nombre <10)
+                                                            Resultat<--Resultat+'V'
+                                                            Nombre<--Nombre-5
+                                                        
+                                                            SI (Nombre=4 ET Nombre<5) ALORS
+                                                                    Resultat<--Resultat+"IV"
+                                                                    Nombre<--Nombre-4
+       
+                                                                    SI (Nombre>1 ET Nombre<5)
+                                                                        Resultat<--Resultat+'I'
+                                                                        Nombre<--Nombre-1
+                                                                    FINSI
+                                                            FINSI
+                                                        FINSI
+                                                FINSI
+                                        FINSI
+                                    FINSI
+                                
+                            FINSI
+                        FINSI
+                    FINSI
+                FINSI
+            FINSI
+        FINSI
+    FINSI
+
+    ECRIRE (Resultat)
+
+FINTANQUE       
+
+        Convertion_Romains_Calcul<--Resultat
+FINPROCEDURE
+
+
+//**************************************************
+//Description: Fonction qui va executer la convertion d'un chiffre romain en valeur décimale
+//
+//Entrée: chiffre romain
+//
+//Sortie: Nombre décimale 
+//
+//Note
+//*************************************************
+PROCEDURE ConvertionDecimale()
+
+    var
+
+        Chiffre_Romain:CHAÎNE
+        cpt:ENTIER
+
+    debut
+
+        cpt<--1
+
+        ECIRE "Saisir votre chiffre romain : "
+        LIRE (CChiffre_Romain)
+
+        TANTQUE (cpt<Longueur[Chiffre_Romain])
+
+                SI(Chiffre_Romain[cpt]='M') ALORS
+
+                    Resultat<--Resultat+1000
+
+                FINSI
+
+                    SI(Chiffre_Romain[cpt]='D') ALORS
+
+                        SI (Chiffre_Romain[cpt+1]=C) ALORS
+
+                        Resultat<--Resultat+400
+
+                        SINON
+
+                        Resultat<--Resultat+500
+                        FINSI
+                    SI
+
+             
+
+                SI(Chiffre_Romain[cpt]='C') ALORS
+
+                    SI (Chiffre_Romain[cpt+1]=M) ALORS
+
+                        Resultat<--Resultat+900
+
+                    SINON
+
+                        Resultat<--Resultat+100
+                    FINSI
+                FINSI
+
+                SI(Chiffre_Romain[cpt]='L') ALORS
+
+                    SI (Chiffre_Romain[cpt+1]=X) ALORS
+
+                        Resultat<--Resultat+40
+
+                    SINON
+
+                        Resultat<--Resultat+50
+                    FINSI
+                SI
+
+            SI(Chiffre_Romain[cpt]='X') ALORS
+
+                      SI (Chiffre_Romain[cpt+1]=I) ALORS
+
+                        Resultat<--Resultat+9
+
+                    SINON
+
+                        Resultat<--Resultat+10
+                    FINSI
+            FINSI
+
+            SI(Chiffre_Romain[cpt]='V') ALORS
+
+                      SI (Chiffre_Romain[cpt+1]=I) ALORS
+
+                        Resultat<--Resultat+5
+
+                    SINON
+
+                        Resultat<--Resultat+4
+                    FINSI
+            FINSI
+
+
+            SI(Chiffre_Romain[cpt]='I') ALORS
+
+                    Resultat<--Resultat+1
+
+            FINSI
+
+            cpt<--cpt+1
+            
+        FINTANTQUE
+
+    ConvertionDecimale<--Resultat
+
+
+FINPROCEDURE
+
+//**************************************************
+//Description: affichage de la fonction convertion decimale
+//
+//Entrée
+//
+//Sortie:Nombre décimale 
+//
+//Note
+//*************************************************
+Procedure ConvertionDecimaleAffichage()
+
+        TANTQUE(CChiffre_Romain[Ncpt]<>0) ALORS
+
+               SI(CChiffre_Romain[Ncpt]='M' ET CChiffre_Romain[Ncpt-1]<>'C') ALORS
+
+                            
+                                NResultat<--NResultat+1000
+                FINSI
+                            
+
+
+                SI(CChiffre_Romain[Ncpt]='D' ET CChiffre_Romain[Ncpt-1]<>'C') ALORS
+                            
+                                NResultat<--NResultat+500
+                FINSI           
+
+
+                SI(CChiffre_Romain[Ncpt]='C' ET CChiffre_Romain[Ncpt-1]<>'X') ALORS
+
+                        SI (CChiffre_Romain[Ncpt+1]='M') ALORS
+                            
+                                NResultat<--NResultat+900
+                        
+
+                        SINON 
+
+                                SI (CChiffre_Romain[Ncpt+1]='D') ALORS
+                                        
+                                            NResultat<--NResultat+400
+                                
+
+                                SINON
+                                        
+                                            NResultat<--NResultat+100
+                                        
+                                FINSI
+                         FINSI       
+                FINSI
+
+
+                SI(CChiffre_Romain[Ncpt]='L' ET CChiffre_Romain[Ncpt-1]<>'X') ALORS
+
+                            
+                                NResultat<--NResultat+50
+                            
+                FINSI
+
+
+
+                SI(CChiffre_Romain[Ncpt]='X' ET CChiffre_Romain[Ncpt-1]<>'I') ALORS
+
+                        SI (CChiffre_Romain[Ncpt+1]='C') ALORS
+                            
+                                NResultat<--NResultat+90
+
+                            
+
+                        SINON 
+
+                                SI (CChiffre_Romain[Ncpt+1]='L') ALORS
+                                        
+                                            NResultat<--NResultat+40
+                                        
+
+                                SINON
+                                        
+                                            NResultat<--NResultat+10
+                                        
+                                FINSI
+                        FINSI
+                FINSI
+
+                SI(CChiffre_Romain[Ncpt]='V' ET CChiffre_Romain[Ncpt-1]<>'I') ALORS
+
+                            
+                                NResultat<--NResultat+5
+                FINSI
+
+
+
+
+
+                SI(CChiffre_Romain[Ncpt]='I') ALORS
+
+                        SI (CChiffre_Romain[Ncpt+1]='X') ALORS
+                            
+                                NResultat<--NResultat+9
+                            
+
+                        SINON 
+
+                                SI (CChiffre_Romain[Ncpt+1]='V') ALORS
+                                        
+                                            NResultat<--NResultat+4
+                                        
+
+                                SINON
+                                        
+                                            NResultat<--NResultat+1
+                                        
+                                FINSI
+                        FINSI
+                FINSI
+
+
+            Ncpt<--Ncpt+1;
+
+    FINTANTQUE
+
+    Ecrire (NResultat)
+
+FINPROCEDURE
+
+//**************************************************
+//Description: procedure qui va permettre d'afficher un menu qui permet à l'utilisateur defaire un choix
+//
+//Entrée: ENTIER
+//
+//Sortie: PROCEDURE 
+//
+//Note
+//*************************************************
+
+Procedure Affichage()
+
+    var 
+
+        NChoix:ENTIER
+    DEBUT
+            NChoix<--
+
+            ECRIRE "Bienvenue ! Que souhaitez vous faire ?"
+            ECRIRE "Tapez 1 : Convertion d'un décimale en chiffre Romain"
+            ECRIRE "Tapez 2 : Convertion d'un chiffre romain en nombre décimale "
+            ECRIRE "Tapez 3 : Quittez "
+
+
+            TANTQUE(NChoix<>3) ALORS
+
+                                ECRIRE "Votre choix : "
+                                LIRE (NChoix)
+
+                                CAS NChoix PARMIS
+
+                                    cas 1 :
+                                            Convertion_Romains_Calcul()
+                                            break
+
+                                    cas 2 :
+                                            Convertion_Decimal_Calcul()
+                                            break
+                                    cas 3 :
+                                            ECRIRE "Aurevoir !"
+                                            break
+                                    caspardefault:
+                                            ECRIRE "Saisi non valide "
+                                            break
+                                FINCASPARMIS
+            FINTANTQUE
+
+
+FINPROCEDURE 
+
+
+DEBUT
+
+    Affichage()
+
+FIN.
